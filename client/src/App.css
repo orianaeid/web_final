@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+/* all css variables here */
+:root {
+  --clr-prime: #751642;
+  --clr-second: #fdfe7e;
+  --clr-light: #fffeeb;
+  --clr-dark: #111111;
+  --clr-weak: #bbb;
+
+  --font-main: "Poppins", sans-serif;
+}
+
+
+/* this rule calculates the dimensions of elements with the padding and border */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+  overflow-x: hidden;
+
+  margin: 0;
+  font-family: var(--font-main);
+}
+:not(h3, h2, h3) {
+  font-size: 0.865rem; /* ~ 12px */
+
+  @media all and (min-width: 300px) {
+    font-size: 0.935rem; /* ~ 14px */
+  };
+  @media all and (min-width: 768px) {
+    font-size: 1rem; /* ~ 16px */
+  };
+  @media all and (min-width: 1024px) {
+    font-size: 1.06rem; /* ~ 18px */
+  };
+}
+main {
+  padding: 12px;
+}
+h1, h2, h3 {
+  color: var(--clr-prime);
+  text-align: center;
+  
+  margin: 0;
+  padding: 12px 0; /* pattern is [vertical-Y horizontal-X] */
+}
+p{
+  margin: 0;
+}
+a{
+  text-decoration: none;
+  color: var(--clr-dark);
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+
+
+
+/* tools */
+.divide-y-3 :nth-child(1n + 1):not(:last-child){
+  margin-bottom: 12px;  
+}
+.is-title {
+  text-transform: uppercase;
+  font-size: clamp(24px, 9vw, 36px);
+}
+.is-link {
+  color: var(--clr-second);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.center-it{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* tools end */
+
+
+
+.main-title {
+  margin: 0;
+  padding-bottom: 12px;
+  font-size: clamp(32px, 10vw, 64px);
+}
+
+
+
+.navbar {
+  background-color: var(--clr-prime);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: space-between;
+}
+.nav-item {
+  color: var(--clr-second);
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  padding: 12px; 
+}
+label.nav-item {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  
+}
+label.nav-item .fa-xmark, label.nav-item .fa-bars {
+  display: none;
+  
+  @media all and (max-width: 480px) {
+    display: flex;
+  }
+}
+.nav-item.acc {
+  transition: all 300ms;
+
+  @media all and (max-width: 480px) {
+    display: none;
+  }
+}
+
+/* X icon off, burger on initially */
+#dropdown-toggler + label .fa-xmark {
+  display: none;
+}
+/* X icon on, burger off when hidden checkbox is on */
+#dropdown-toggler:checked + label .fa-xmark {
+  display: inline;
+}
+#dropdown-toggler:checked + label .fa-bars {
+  display: none;
+}
+/* dropdown when hidden checkbox is on, open dropdown */
+#dropdown-toggler:checked ~ .dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.dropdown {
+  background-color: var(--clr-prime);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 300ms;
+
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+.dropdown .nav-item {
+  transition: all 300ms;
+}
+.dropdown .nav-item:hover, .nav-item.acc:hover {
+  color: var(--clr-prime);
+  background-color: var(--clr-second);
+}
+
+
+.home-entry {
+  display: flex;
+  flex-direction: column;
+  column-gap: 12px;
+
+  @media all and (min-width: 480px){
+    flex-direction: row;
+  }
+}
+.home-entry section {
+  width: 100%;
+  flex-grow: 1;
+
+  @media all and (min-width: 480px){
+    width: 50%;
+  }
+  @media all and (min-width: 1024px){
+    &.img-flip{
+      width: 40%;
+    }
+  }
+  @media all and (min-width: 1280px){
+    &.img-flip{
+      width: 20%;
+    }
+  }
+}
+.home-entry article span {
+  font-size: clamp(32px, 10vw, 64px);
+
+  font-weight: bold;
+  color: var(--clr-prime);
+}
+.home-entry article {
+  font-size: clamp(24px, 7vw, 48px);
+}
+.home-entry input {
+  display: block;
+  padding: 8px 12px;
+  margin: 12px 0;
+  
+  width: 100%;
+  max-width: 350px;
+  
+  outline: none;
+  border: 1px outset var(--clr-prime);
+  border-radius: 1rem;
+
+  &::placeholder {
+    font-style: italic;
+  }
+}
+.home-entry .btn-fuse {
+  background-color: var(--clr-prime);
+  color: var(--clr-second);
+  font-weight: 500;
+
+  padding: 12px 24px;
+  border-radius: 1rem;
+}
+.img-flip {
+  animation: 5s flip;
+}
+/* .home-entry .welcomer {
+  display: flex;
+  justify-content: center;
+} */
+
+
+
+#photo-slider {
+  background-color: var(--clr-prime);
+  border: 2px solid var(--clr-second)
+}
+#photo-slider .splide{
+  padding: 12px;
+}
+#photo-slider h2 {
+  color: var(--clr-second);
+  font-size: clamp(20px, 8vw, 36px);
+  
+  padding-left: 12px;
+  padding-right: 12px;
+
+  border-bottom: 2px solid var(--clr-second);
+}
+#photo-slider img {
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1/1;
+
+  display: block;
+  margin: auto;
+}
+
+
+
+/* it's for both register and login */
+.login-form {
+  background-color: var(--clr-prime);
+  padding: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+  
+  border: 2px solid var(--clr-second);
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.login-form h2 {
+  color: var(--clr-second);
+  padding-bottom: 24px;
+}
+.login-form label {
+  color: var(--clr-weak);
+  
+  display: block;
+  position: relative;
+  left: 4px;
+}
+.login-form input, textarea {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  
+  border-radius: 1rem;
+  border-color: var(--clr-prime);
+  outline: none;
+}
+.login-form .submit-sect {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.login-form .submit-sect button{
+  background-color: var(--clr-second);
+  color: var(--clr-prime);
+  padding: 8px 12px;
+
+  border: none;
+  border-radius: 1rem;
+
+  font-weight: bold;
+  cursor: pointer;
+}
+.login-form .fallback-msg{
+  text-align: center;
+  color: var(--clr-second);
+}
+
+
+
+.login-form .multiple-choice-field{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 12px;
+
+  user-select: none;
+}
+.login-form .multiple-choice-field div{
+  display: flex;
+  justify-content: start;
+}
+.login-form input[type="checkbox"], .login-form input[type="radio"]{
+  display: inline !important;
+  width: fit-content !important;
+  cursor: pointer;
+}
+.login-form .multiple-choice-field label {
+  color: var(--clr-second)
+}
+
+
+
+.profile-table{ 
+  color: var(--clr-second);
+  background-color: var(--clr-prime);
+  width: 100%;
+
+  border: 2px solid var(--clr-second);
+  border-collapse: collapse;
+}
+.profile-table th, .profile-table td {
+  border: 2px solid var(--clr-second);
+  padding: 12px;
+}
+.profile-table th {
+  text-align: left;
+}
+
+
+
+.footer{
+  background-color: var(--clr-prime);
+  padding: 12px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-evenly;
+
+  border-top: 2px solid var(--clr-second);
+
+  @media all and (max-width: 480px) {
+    display: block;
+  }
+}
+.footer h2 {
+  color: var(--clr-second);
+  text-align: left;
+}
+.footer a {
+  display: block;
+  color: var(--clr-dark);
+
+  transition: color 300ms;
+}
+.footer a:hover {
+  color: var(--clr-second);
+}
+
+
+
+.copyright{
+  color: var(--clr-dark);
+  background-color: var(--clr-weak);
+
+  padding: 12px;
+  text-align: center;
+}
+
+
+/* animation keyframes */
+@keyframes flip {
+  0%, 100% {
+      transform: rotateY(0deg);
+  }
+  50% {
+      transform: rotateY(180deg);
+  }
+}
+/* animation keyframes end */
